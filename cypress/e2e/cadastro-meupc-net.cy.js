@@ -1,3 +1,5 @@
+
+
 describe('Testando Meu Pc.net', () => {
   it('Validando cadastro', () => {
     cy.visit('https://meupc.net/')
@@ -28,4 +30,36 @@ describe('Testando Meu Pc.net', () => {
     
 
   })
+
+  it.only('Validando login', () => {
+    cy.visit('https://meupc.net/')
+
+    cy.get('.navbar-burger').click()
+
+    cy.wait(1000)
+
+    cy
+    .get('ul.menu-list')
+    .children('li')
+    .children('a[href="https://meupc.net/login"]')
+    .click()
+
+   cy
+   .contains('Email ou nome de usuário')
+   .siblings('input')
+   .type('testecypress@tuamaraquelaursa.com')
+   
+   cy
+   .contains('Senha')
+   .siblings('span')
+   .children('input')
+   .type('testecypress')
+
+   cy
+   .contains('Cancelar')
+   .siblings('button')
+   .click()
+
+  })
 })
+
